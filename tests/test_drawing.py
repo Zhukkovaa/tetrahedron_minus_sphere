@@ -1,12 +1,11 @@
 import unittest
 from unittest.mock import patch
-from drawing import draw_sphere, draw_tetrahedron
-
+from src.drawing import draw_sphere, draw_tetrahedron
 
 class TestDrawSphere(unittest.TestCase):
-    @patch('drawing.glColor3f')
-    @patch('drawing.gluSphere')
-    @patch('drawing.gluNewQuadric')
+    @patch('src.drawing.glColor3f')
+    @patch('src.drawing.gluSphere')
+    @patch('src.drawing.gluNewQuadric')
     def test_draw_sphere(self, mock_gluNewQuadric, mock_gluSphere, mock_glColor3f):
         radius = 0.85
         draw_sphere(radius)
@@ -15,10 +14,10 @@ class TestDrawSphere(unittest.TestCase):
         mock_gluSphere.assert_called_once_with(mock_gluNewQuadric.return_value, radius, 100, 100)
 
 class TestDrawTetrahedron(unittest.TestCase):
-    @patch('drawing.glBegin')
-    @patch('drawing.glEnd')
-    @patch('drawing.glVertex3f')
-    @patch('drawing.glColor3f')
+    @patch('src.drawing.glBegin')
+    @patch('src.drawing.glEnd')
+    @patch('src.drawing.glVertex3f')
+    @patch('src.drawing.glColor3f')
     def test_draw_tetrahedron(self, mock_glColor3f, mock_glVertex3f, mock_glEnd, mock_glBegin):
         draw_tetrahedron()
         expected_calls = [
